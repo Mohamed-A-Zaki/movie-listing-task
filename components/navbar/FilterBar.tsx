@@ -33,7 +33,7 @@ export default function FilterBar() {
   return (
     <Select value={selectedGenre} onValueChange={handleGenreChange}>
       <SelectTrigger className="lg:w-[180px] bg-white rounded-full">
-        <SelectValue placeholder="filter by genre" />
+        <SelectValue placeholder="Genre" />
       </SelectTrigger>
       <SelectContent>
         {genres.map((genre) => (

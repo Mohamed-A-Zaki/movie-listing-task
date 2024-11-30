@@ -3,7 +3,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ["fakeimg.pl"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "fakeimg.pl",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
   async rewrites() {
     return [
