@@ -5,14 +5,29 @@ import { AxiosError } from "axios";
 
 export const getMovies = async () => {
   try {
+    /***
+     * Start loading
+     */
     moviesAtom.startLoading();
 
+    /***
+     * Get movies
+     */
     const { data } = await endpoint.get<Movie[]>("");
 
-    console.log(data);
-
-    moviesAtom.stopLoading();
+    /***
+     * Set movies
+     */
+    moviesAtom.setMovies(data);
   } catch (error) {
+    /***
+     * Set error
+     */
     moviesAtom.setError((error as AxiosError).message);
+  } finally {
+    /***
+     * Stop loading
+     */
+    moviesAtom.stopLoading();
   }
 };

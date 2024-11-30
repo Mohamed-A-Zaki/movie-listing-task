@@ -1,15 +1,22 @@
-import { endpoint } from "@/api/endpoint";
-import { type Movie } from "@/types";
-import MovieItem from "./MovieItem";
+"use client";
 
-export default async function MoviesList() {
-  const { data } = await endpoint.get<Movie[]>("");
+import { useEffect } from "react";
+import MovieItem from "./MovieItem";
+import { getMovies } from "@/services/get-movies";
+import { moviesAtom } from "@/atoms/movies-atom";
+
+export default function MoviesList() {
+  const { movies } = moviesAtom.useValue();
+
+  useEffect(() => {
+    getMovies();
+  }, []);
 
   return (
     <>
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-10">
-          {data.map((item) => {
+          {movies?.map((item) => {
             return <MovieItem key={item.id} {...item} />;
           })}
         </div>

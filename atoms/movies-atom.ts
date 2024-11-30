@@ -14,7 +14,7 @@ export const moviesAtom = atom<MoviesAtom, MovieAtomActions>({
     startLoading() {
       moviesAtom.change("isLoading", true);
     },
-    endLoading() {
+    stopLoading() {
       moviesAtom.change("isLoading", false);
     },
     setError(error: string) {
