@@ -1,8 +1,8 @@
 "use client";
 
+import { searchKeywordAtom } from "@/atoms/search-keyword-atom";
 import { ChangeEvent } from "react";
 import { Input } from "../ui/input";
-import { searchKeywordAtom } from "@/atoms/search-keyword-atom";
 
 export default function SearchBar() {
   const search = searchKeywordAtom.useValue();

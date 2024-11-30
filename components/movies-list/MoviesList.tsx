@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
-import MovieItem from "./MovieItem";
-import { getMovies } from "@/services/get-movies";
 import { moviesAtom } from "@/atoms/movies-atom";
 import { searchKeywordAtom } from "@/atoms/search-keyword-atom";
 import { selectedGenresAtom } from "@/atoms/selected-genre-atom";
-import ErrorMessage from "../indicators/ErrorMessage";
+import { getMovies } from "@/services/get-movies";
+import { useEffect } from "react";
 import EmptyMessage from "../indicators/EmptyMessage";
+import ErrorMessage from "../indicators/ErrorMessage";
 import Loader from "../indicators/Loader";
+import MovieItem from "./MovieItem";
 
 export default function MoviesList() {
   const { movies, isLoading, error } = moviesAtom.useValue();

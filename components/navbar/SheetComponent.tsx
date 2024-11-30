@@ -8,8 +8,8 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import SearchBar from "./SearchBar";
 import FilterBar from "./FilterBar";
+import SearchBar from "./SearchBar";
 
 export default function SheetComponent() {
   /***
