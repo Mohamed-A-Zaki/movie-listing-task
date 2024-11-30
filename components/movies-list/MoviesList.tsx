@@ -6,9 +6,9 @@ import { getMovies } from "@/services/get-movies";
 import { moviesAtom } from "@/atoms/movies-atom";
 import { searchKeywordAtom } from "@/atoms/search-keyword-atom";
 import { selectedGenresAtom } from "@/atoms/selected-genre-atom";
-import Loading from "../indicators/Loading";
 import ErrorMessage from "../indicators/ErrorMessage";
 import EmptyMessage from "../indicators/EmptyMessage";
+import Loader from "../indicators/Loader";
 
 export default function MoviesList() {
   const { movies, isLoading, error } = moviesAtom.useValue();
@@ -24,7 +24,7 @@ export default function MoviesList() {
   }, [genre, search]);
 
   if (isLoading) {
-    return <Loading />;
+    return <Loader />;
   }
 
   if (error) {
