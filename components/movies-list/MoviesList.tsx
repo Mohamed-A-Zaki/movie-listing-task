@@ -4,13 +4,21 @@ import { useEffect } from "react";
 import MovieItem from "./MovieItem";
 import { getMovies } from "@/services/get-movies";
 import { moviesAtom } from "@/atoms/movies-atom";
+import { searchKeywordAtom } from "@/atoms/search-keyword-atom";
+import { selectedGenresAtom } from "@/atoms/selected-genre-atom";
 
 export default function MoviesList() {
   const { movies } = moviesAtom.useValue();
 
+  const search = searchKeywordAtom.useValue();
+  const genre = selectedGenresAtom.useValue();
+
   useEffect(() => {
-    getMovies();
-  }, []);
+    getMovies({
+      search,
+      genre,
+    });
+  }, [genre, search]);
 
   return (
     <>

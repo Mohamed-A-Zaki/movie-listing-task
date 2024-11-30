@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { ChangeEvent } from "react";
 import { Input } from "../ui/input";
-import { getMovies } from "@/services/get-movies";
+import { searchKeywordAtom } from "@/atoms/search-keyword-atom";
 
 export default function SearchBar() {
-  const [search, setSearch] = useState("");
+  const search = searchKeywordAtom.useValue();
 
-  useEffect(() => {
-    getMovies(search);
-  }, [search]);
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    searchKeywordAtom.update(e.target.value);
+  };
 
   return (
     <Input
@@ -17,7 +17,7 @@ export default function SearchBar() {
       placeholder="search movies..."
       className="bg-white rounded-full p-4"
       value={search}
-      onChange={(e) => setSearch(e.target.value)}
+      onChange={onChange}
     />
   );
 }

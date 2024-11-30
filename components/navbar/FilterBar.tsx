@@ -1,3 +1,6 @@
+"use client";
+
+import { selectedGenresAtom } from "@/atoms/selected-genre-atom";
 import {
   Select,
   SelectContent,
@@ -6,16 +9,38 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+const genres = [
+  "Action",
+  "Crime",
+  "Drama",
+  "Romance",
+  "Adventure",
+  "Sci-Fi",
+  "Fantasy",
+  "Thriller",
+  "War",
+  "History",
+  "Animation",
+];
+
 export default function FilterBar() {
+  const selectedGenre = selectedGenresAtom.useValue();
+
+  const handleGenreChange = (value: string) => {
+    selectedGenresAtom.update(value);
+  };
+
   return (
-    <Select>
+    <Select value={selectedGenre} onValueChange={handleGenreChange}>
       <SelectTrigger className="lg:w-[180px] bg-white rounded-full">
-        <SelectValue placeholder="Theme" />
+        <SelectValue placeholder="filter by genre" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="light">Light</SelectItem>
-        <SelectItem value="dark">Dark</SelectItem>
-        <SelectItem value="system">System</SelectItem>
+        {genres.map((genre) => (
+          <SelectItem key={genre} value={genre}>
+            {genre}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   );

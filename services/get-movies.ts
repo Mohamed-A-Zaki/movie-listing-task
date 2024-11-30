@@ -3,7 +3,10 @@ import { moviesAtom } from "@/atoms/movies-atom";
 import { Movie } from "@/types";
 import { AxiosError } from "axios";
 
-export const getMovies = async (search: string) => {
+export const getMovies = async (filterParams: {
+  search?: string;
+  genre?: string;
+}) => {
   try {
     /***
      * Start loading
@@ -13,9 +16,9 @@ export const getMovies = async (search: string) => {
     /***
      * Get movies
      */
-    const { data } = await endpoint.get<Movie[]>(
-      search ? `?search=${search}` : ""
-    );
+    const { data } = await endpoint.get<Movie[]>("", {
+      params: filterParams,
+    });
 
     /***
      * Set movies
