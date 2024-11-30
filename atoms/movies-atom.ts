@@ -6,7 +6,7 @@ export const moviesAtom = atom<MoviesAtom, MovieAtomActions>({
 
   default: {
     movies: [],
-    isLoading: false,
+    isLoading: true,
     error: "",
   },
 

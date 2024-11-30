@@ -9,11 +9,6 @@ export const getMovies = async (filterParams: {
 }) => {
   try {
     /***
-     * Start loading
-     */
-    moviesAtom.startLoading();
-
-    /***
      * Get movies
      */
     const { data } = await endpoint.get<Movie[]>("", {

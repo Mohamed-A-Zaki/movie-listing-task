@@ -6,9 +6,12 @@ import { getMovies } from "@/services/get-movies";
 import { moviesAtom } from "@/atoms/movies-atom";
 import { searchKeywordAtom } from "@/atoms/search-keyword-atom";
 import { selectedGenresAtom } from "@/atoms/selected-genre-atom";
+import Loading from "../indicators/Loading";
+import ErrorMessage from "../indicators/ErrorMessage";
+import EmptyMessage from "../indicators/EmptyMessage";
 
 export default function MoviesList() {
-  const { movies } = moviesAtom.useValue();
+  const { movies, isLoading, error } = moviesAtom.useValue();
 
   const search = searchKeywordAtom.useValue();
   const genre = selectedGenresAtom.useValue();
@@ -19,6 +22,18 @@ export default function MoviesList() {
       genre,
     });
   }, [genre, search]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <ErrorMessage message={error} />;
+  }
+
+  if (movies.length === 0) {
+    return <EmptyMessage message="No movies found" />;
+  }
 
   return (
     <>
